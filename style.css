@@ -97,6 +97,56 @@ body {
   background-color: #3e8e41;
 }
 
+/* Random BIN Generator Section */
+.random-bin-section {
+  background-color: var(--medium-blue);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.random-bin-section h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: var(--text-color-light);
+  border-bottom: 1px solid var(--light-blue);
+  padding-bottom: 10px;
+}
+
+.random-bin-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.control-group label {
+  font-weight: bold;
+  color: var(--text-color-light);
+}
+
+.control-group select,
+.control-group input[type="number"] {
+  padding: 8px 12px;
+  background-color: var(--dark-blue);
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  color: var(--text-color-light);
+  font-size: 16px;
+}
+
+#get-bins-btn {
+  align-self: flex-end;
+}
+
 
 .container {
   padding: 20px 25px;
