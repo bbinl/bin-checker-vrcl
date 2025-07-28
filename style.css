@@ -1,0 +1,407 @@
+:root {
+  --dark-blue: #1a2035;
+  --medium-blue: #232a41;
+  --light-blue: #3e4a6e;
+  --green: #4caf50;
+  --red-bin: #f44336; 
+  --red-dead: #f44336;
+  --orange-unknown: #ff9800;
+  --yellow-btn: #ffc107;
+  --orange-btn: #fd7e14;
+  --text-color-light: #f8f9fa;
+  --text-color-dark: #212529;
+}
+
+body {
+  font-family: "Rubik", Arial, sans-serif;
+  background-color: var(--dark-blue);
+  color: var(--text-color-light);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top */
+  min-height: 100vh;
+  width: 100vw; /* Viewport width */
+  overflow-x: hidden; /* Horizontal scrollbar এড়ানো */
+}
+
+.main-wrapper {
+  width: 100%;
+  background-color: var(--dark-blue);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  min-height: 100vh; /* Make sure it takes full height */
+}
+
+/* Header Styling */
+.top-header {
+  background-color: var(--medium-blue);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--light-blue);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+.top-header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: var(--text-color-light);
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.checker-top-btn {
+  background-color: #05f505;
+  color: var(#0047ab);
+}
+
+.checker-top-btn:hover {
+  background-color: #3e8e41;
+}
+
+.faker-checker-btn {
+  background-color: #05f505;
+  color: var(#0047ab);
+}
+
+.faker-checker-btn:hover {
+  background-color: #3e8e41;
+}
+
+
+.container {
+  padding: 20px 25px;
+  background-color: var(--dark-blue);
+}
+
+/* Input and Output Section - Main checker layout */
+.input-output-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
+}
+
+.input-fields {
+  flex: 1; /* Takes roughly half space */
+  min-width: 300px; /* Minimum width for responsiveness */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-color-light);
+}
+
+.input-group textarea,
+.input-group input[type="text"],
+.input-group input[type="number"] {
+  width: calc(100% - 20px); /* Adjust for padding */
+  padding: 10px;
+  background-color: var(--medium-blue);
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  color: var(--text-color-light);
+  font-size: 16px;
+  resize: vertical; /* Allow vertical resizing for textarea */
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.generate-btn, .copy-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.generate-btn { /* This will be Start Checking */
+  background-color: var(--yellow-btn);
+  color: var(--text-color-dark);
+}
+
+.generate-btn:hover:not([disabled]) {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.copy-btn { /* This will be Stop Checking */
+  background-color: var(--orange-btn);
+  color: var(--text-color-dark);
+}
+
+.copy-btn:hover:not([disabled]) {
+  background-color: #fb8c00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.generate-btn[disabled], .copy-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.result-area {
+  flex: 1; /* Takes roughly half space */
+  min-width: 300px; /* Minimum width for responsiveness */
+  display: flex;
+  flex-direction: column;
+}
+
+.result-area label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-color-light);
+}
+
+.result-area textarea {
+  width: calc(100% - 20px);
+  flex-grow: 1;
+  padding: 10px;
+  background-color: var(--medium-blue);
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  color: var(--text-color-light);
+  font-size: 16px;
+  resize: vertical;
+  min-height: 25px; /* Adjusted height to look more like the screenshot */
+  white-space: pre; /* Preserve line breaks */
+  word-wrap: normal; /* Do not wrap long words */
+  overflow-x: auto; /* Allow horizontal scrolling for long lines */
+}
+
+.result-area textarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.result-area textarea::-webkit-scrollbar-track {
+  background: var(--dark-blue);
+}
+
+.result-area textarea::-webkit-scrollbar-thumb {
+  background: var(--light-blue);
+  border-radius: 4px;
+}
+
+.result-area textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* New styles for checker summary sections */
+.checker-summary-section {
+  display: grid; /* Use grid for a flexible 2-column layout */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between result containers */
+  margin-top: 30px; /* Space from above section */
+  padding-top: 20px;
+  border-top: 1px solid var(--light-blue);
+}
+
+.result-container {
+  background-color: var(--medium-blue);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.result-container h2 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out title and count */
+}
+
+.result-container h2 .live,
+.result-container h2 .dead {
+  font-size: 24px; /* Make count bigger */
+  font-weight: bold;
+}
+
+/* Specific colors for counts */
+.result-container h2 .live { color: var(--green); }
+.result-container h2 .dead { color: var(--red-dead); }
+
+.result-textarea { 
+  width: calc(100% - 20px); 
+  height: 200px; 
+  padding: 10px;
+  background-color: var(--dark-blue); 
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  color: var(--text-color-light);
+  font-size: 14px;
+  resize: vertical; 
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: auto; 
+}
+
+.result-textarea::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.result-textarea::-webkit-scrollbar-track {
+  background: var(--medium-blue);
+}
+
+.result-textarea::-webkit-scrollbar-thumb {
+  background: var(--light-blue);
+  border-radius: 3px;
+}
+
+.result-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.copy-btn-checker {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--orange-btn); /* Using orange for copy buttons */
+  color: var(--text-color-dark);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; /* Align to the right bottom of the container */
+  margin-top: 5px; /* Space from textarea */
+}
+
+.copy-btn-checker:hover {
+  background-color: #fb8c00;
+}
+
+
+/* Footer Styling */
+.main-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--medium-blue);
+  border-top: 2px solid var(--light-blue);
+  color: var(--text-color-light);
+}
+
+.main-footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.main-footer a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Colors for live/dead/unknown (if still used internally for counts) */
+.live {
+  color: var(--green);
+}
+.dead {
+  color: var(--red-dead);
+}
+.unknown {
+  color: var(--orange-unknown);
+}
+
+
+/* Media Queries */
+@media (min-width: 1200px) { /* Larger screens - full width with some padding */
+    .main-wrapper {
+        padding: 0 0px; /* Add some side padding for very wide screens if desired */
+    }
+    .container {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+  .input-output-section {
+    flex-direction: column;
+  }
+  .input-fields, .result-area {
+      min-width: unset; 
+      width: 100%;
+  }
+  .checker-summary-section {
+    grid-template-columns: 1fr; 
+  }
+}
+
+@media (max-width: 600px) {
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .header-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
