@@ -1,20 +1,58 @@
 let stopChecking = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+    const getBinsBtn = document.getElementById('get-bins-btn');
+    const countrySelect = document.getElementById('country-select');
+    const binAmountInput = document.getElementById('bin-amount');
+    const numbersTextarea = document.getElementById("numbers");
     const checkBtn = document.getElementById("check-btn");
     const stopCheckBtn = document.getElementById("stop-check-btn");
-    const numbersTextarea = document.getElementById("numbers");
     const resultOutputTextarea = document.getElementById("result-output");
-
     const liveNumbersTextarea = document.getElementById("ali-numbers");
     const deadNumbersTextarea = document.getElementById("muhammad-numbers");
-
     const liveCountSpan = document.getElementById("ali-count");
     const deadCountSpan = document.getElementById("muhammad-count");
 
     let liveCount = 0;
     let deadCount = 0;
 
+    async function fetchCountries() {
+        try {
+            const response = await fetch('/api/countries');
+            const countries = await response.json();
+            countries.sort((a, b) => a.name.localeCompare(b.name));
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.code;
+                option.textContent = `${country.name} (${country.code})`;
+                countrySelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Failed to fetch countries:', error);
+        }
+    }
+
+    async function getRandomBins() {
+        const country = countrySelect.value;
+        const limit = binAmountInput.value;
+        let url = `/api/random-bins?limit=${limit}`;
+        if (country) {
+            url += `&country=${country}`;
+        }
+
+        try {
+            const response = await fetch(url);
+            const bins = await response.text();
+            numbersTextarea.value = bins;
+            Swal.fire("Success", "Random BINs have been loaded.", "success");
+        } catch (error) {
+            console.error('Failed to fetch random BINs:', error);
+            Swal.fire("Error", "Could not fetch random BINs.", "error");
+        }
+    }
+
+    fetchCountries();
+    getBinsBtn.addEventListener('click', getRandomBins);
     checkBtn.addEventListener("click", startChecking);
     stopCheckBtn.addEventListener("click", stopCheckingProcess);
 
