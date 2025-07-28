@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/check", "destination": "/api/check.js" }
+    { "source": "/api/check", "destination": "/api/check.js" },
+    { "source": "/api/countries", "destination": "/api/countries.js" },
+    { "source": "/api/random-bins", "destination": "/api/random-bins.js" }
   ]
 }
